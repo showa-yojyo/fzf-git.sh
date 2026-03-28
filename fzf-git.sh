@@ -365,18 +365,18 @@ _fzf_git_worktrees() {
 }
 
 _fzf_git_list_bindings() {
-  cat <<'EOF'
+  cat <<EOF
 
-CTRL-G ? to show this list
-CTRL-G CTRL-F for Files
-CTRL-G CTRL-B for Branches
-CTRL-G CTRL-T for Tags
-CTRL-G CTRL-R for Remotes
-CTRL-G CTRL-H for commit Hashes
-CTRL-G CTRL-S for Stashes
-CTRL-G CTRL-L for reflogs
-CTRL-G CTRL-W for Worktrees
-CTRL-G CTRL-E for Each ref (git for-each-ref)
+\C-x g ? to show this list
+\C-x g f for Files
+\C-x g b for Branches
+\C-x g t for Tags
+\C-x g r for Remotes
+\C-x g h for commit Hashes
+\C-x g s for Stashes
+\C-x g l for reflogs
+\C-x g w for Worktrees
+\C-x g e for Each ref (git for-each-ref)
 EOF
 }
 
@@ -400,15 +400,12 @@ if [[ -n "${BASH_VERSION:-}" ]]; then
     for o in "$@"; do
       c=${o:0:1}
       if [[ $c == '?' ]]; then
-        bind -x "\"\C-g$c\": _fzf_git_list_bindings"
+        bind -x "\"\C-xg$c\": _fzf_git_list_bindings"
         continue
       fi
-      bind -m emacs-standard '"\C-g\C-'$c'": " \C-u \C-a\C-k`_fzf_git_'$o'`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\er \C-h"'
-      bind -m vi-command     '"\C-g\C-'$c'": "\C-z\C-g\C-'$c'\C-z"'
-      bind -m vi-insert      '"\C-g\C-'$c'": "\C-z\C-g\C-'$c'\C-z"'
-      bind -m emacs-standard '"\C-g'$c'":    " \C-u \C-a\C-k`_fzf_git_'$o'`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\er \C-h"'
-      bind -m vi-command     '"\C-g'$c'":    "\C-z\C-g'$c'\C-z"'
-      bind -m vi-insert      '"\C-g'$c'":    "\C-z\C-g'$c'\C-z"'
+      bind -m emacs-standard '"\C-xg'$c'": " \C-u \C-a\C-k`_fzf_git_'$o'`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\er \C-h"'
+      bind -m vi-command     '"\C-xg'$c'": "\C-z\C-g'$c'\C-z"'
+      bind -m vi-insert      '"\C-xg'$c'": "\C-z\C-g'$c'\C-z"'
     done
   }
 elif [[ -n "${ZSH_VERSION:-}" ]]; then

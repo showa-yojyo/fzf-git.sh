@@ -1,7 +1,7 @@
 fzf-git.sh
 ==========
 
-bash, zsh, and fish key bindings for Git objects, powered by [fzf][fzf].
+bash, zsh, and fish key bindings for Git objects, powered by [fzf].
 
 <img width="1680" alt="image" src="https://user-images.githubusercontent.com/700826/185568470-20d70937-eea4-4274-aec5-14dfe7ee2de6.png">
 
@@ -13,7 +13,7 @@ and select the objects you want to paste to your command-line.
 Installation
 ------------
 
-* Install the latest version of [fzf][fzf]
+* Install the latest version of [fzf]
     * (Optional) Install [bat](https://github.com/sharkdp/bat) for
       syntax-highlighted file previews
     * Git v2.42.0 or later is required for the `git for-each-ref` binding
@@ -28,30 +28,18 @@ Usage
 
 ### List of bindings
 
-* <kbd>CTRL-G</kbd><kbd>?</kbd> to show this list
-* <kbd>CTRL-G</kbd><kbd>CTRL-F</kbd> for **F**iles
-* <kbd>CTRL-G</kbd><kbd>CTRL-B</kbd> for **B**ranches
-* <kbd>CTRL-G</kbd><kbd>CTRL-T</kbd> for **T**ags
-* <kbd>CTRL-G</kbd><kbd>CTRL-R</kbd> for **R**emotes
-* <kbd>CTRL-G</kbd><kbd>CTRL-H</kbd> for commit **H**ashes
-* <kbd>CTRL-G</kbd><kbd>CTRL-S</kbd> for **S**tashes
-* <kbd>CTRL-G</kbd><kbd>CTRL-L</kbd> for ref**l**ogs
-* <kbd>CTRL-G</kbd><kbd>CTRL-W</kbd> for **W**orktrees
-* <kbd>CTRL-G</kbd><kbd>CTRL-E</kbd> for **E**ach ref (`git for-each-ref`)
-
-> [!WARNING]
-> You may have issues with these bindings in the following cases:
->
-> * <kbd>CTRL-G</kbd><kbd>CTRL-B</kbd> will not work if
->   <kbd>CTRL-B</kbd> is used as the tmux prefix
-> * <kbd>CTRL-G</kbd><kbd>CTRL-S</kbd> will not work if flow control is enabled,
->   <kbd>CTRL-S</kbd> will freeze the terminal instead
->     * (`stty -ixon` will disable it)
->
-> To workaround the problems, you can use
-> <kbd>CTRL-G</kbd><kbd>*{key}*</kbd> instead of
-> <kbd>CTRL-G</kbd><kbd>CTRL-*{KEY}*</kbd>.
->
+| Key Stroke | Command |
+|------------|---------|
+| <kbd>C-x g ?</kbd> | Show this list |
+| <kbd>C-x g f</kbd> | **F**iles |
+| <kbd>C-x g b</kbd> | **B**ranches |
+| <kbd>C-x g t</kbd> | **T**ags |
+| <kbd>C-x g r</kbd> | **R**emotes |
+| <kbd>C-x g h</kbd> | commit **H**ashes |
+| <kbd>C-x g s</kbd> | **S**tashes |
+| <kbd>C-x g l</kbd> | ref**l**ogs |
+| <kbd>C-x g w</kbd> | **W**orktrees |
+| <kbd>C-x g e</kbd> | **E**ach ref (`git for-each-ref`) |
 
 > [!WARNING]
 > If zsh's `KEYTIMEOUT` is too small (e.g. 1), you may not be able
