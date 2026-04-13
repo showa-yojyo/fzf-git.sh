@@ -363,22 +363,6 @@ _fzf_git_worktrees() {
   awk '{print $1}'
 }
 
-_fzf_git_list_bindings() {
-  cat <<EOF
-
-\C-x g ? to show this list
-\C-x g f for Files
-\C-x g b for Branches
-\C-x g t for Tags
-\C-x g r for Remotes
-\C-x g h for commit Hashes
-\C-x g s for Stashes
-\C-x g l for reflogs
-\C-x g w for Worktrees
-\C-x g e for Each ref (git for-each-ref)
-EOF
-}
-
 fi # --------------------------------------------------------------------------
 
 if [[ $1 = --run ]]; then
@@ -397,15 +381,11 @@ elif [[ $- =~ i ]]; then # -----------------------------------------------------
     local o c
     for o in "$@"; do
       c=${o:0:1}
-      if [[ $c == '?' ]]; then
-        bind -x "\"\C-xg$c\": _fzf_git_list_bindings"
-        continue
-      fi
       bind -m emacs-standard '"\C-xg'$c'": " \C-u \C-a\C-k`_fzf_git_'$o'`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\er \C-h"'
       bind -m vi-command     '"\C-xg'$c'": "\C-z\C-g'$c'\C-z"'
       bind -m vi-insert      '"\C-xg'$c'": "\C-z\C-g'$c'\C-z"'
     done
   }
-  __fzf_git_init files branches tags remotes hashes stashes lreflogs each_ref worktrees '?list_bindings'
+  __fzf_git_init files branches tags remotes hashes stashes lreflogs each_ref worktrees
 
 fi # --------------------------------------------------------------------------

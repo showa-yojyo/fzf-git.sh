@@ -1,12 +1,9 @@
 fzf-git.sh
 ==========
 
-bash key bindings for Git objects, powered by [fzf].
+bash functions for Git objects, powered by [fzf].
 
 <img width="1680" alt="image" src="https://user-images.githubusercontent.com/700826/185568470-20d70937-eea4-4274-aec5-14dfe7ee2de6.png">
-
-Each binding will allow you to browse through Git objects of a certain type,
-and select the objects you want to paste to your command-line.
 
 [fzf]: https://github.com/junegunn/fzf
 
@@ -16,28 +13,13 @@ Installation
 * Install the latest version of [fzf]
     * (Optional) Install [bat](https://github.com/sharkdp/bat) for
       syntax-highlighted file previews
-    * Git v2.42.0 or later is required for the `git for-each-ref` binding
+    * Git v2.42.0 or later is required for the `git for-each-ref`
 * Update your shell configuration file
     * bash
         * Source [fzf-git.sh](https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.sh) file from your .bashrc
 
 Usage
 -----
-
-### List of bindings
-
-| Key Stroke | Command |
-|------------|---------|
-| <kbd>C-x g ?</kbd> | Show this list |
-| <kbd>C-x g f</kbd> | **F**iles |
-| <kbd>C-x g b</kbd> | **B**ranches |
-| <kbd>C-x g t</kbd> | **T**ags |
-| <kbd>C-x g r</kbd> | **R**emotes |
-| <kbd>C-x g h</kbd> | commit **H**ashes |
-| <kbd>C-x g s</kbd> | **S**tashes |
-| <kbd>C-x g l</kbd> | ref**l**ogs |
-| <kbd>C-x g w</kbd> | **W**orktrees |
-| <kbd>C-x g e</kbd> | **E**ach ref (`git for-each-ref`) |
 
 ### Inside fzf
 
