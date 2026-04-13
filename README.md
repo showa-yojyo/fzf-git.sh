@@ -1,7 +1,7 @@
 fzf-git.sh
 ==========
 
-bash, zsh, and fish key bindings for Git objects, powered by [fzf].
+bash key bindings for Git objects, powered by [fzf].
 
 <img width="1680" alt="image" src="https://user-images.githubusercontent.com/700826/185568470-20d70937-eea4-4274-aec5-14dfe7ee2de6.png">
 
@@ -18,10 +18,8 @@ Installation
       syntax-highlighted file previews
     * Git v2.42.0 or later is required for the `git for-each-ref` binding
 * Update your shell configuration file
-    * bash or zsh
-        * Source [fzf-git.sh](https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.sh) file from your .bashrc or .zshrc
-    * fish
-        * Source [fzf-git.fish](https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.fish) from your config.fish
+    * bash
+        * Source [fzf-git.sh](https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.sh) file from your .bashrc
 
 Usage
 -----
@@ -40,10 +38,6 @@ Usage
 | <kbd>C-x g l</kbd> | ref**l**ogs |
 | <kbd>C-x g w</kbd> | **W**orktrees |
 | <kbd>C-x g e</kbd> | **E**ach ref (`git for-each-ref`) |
-
-> [!WARNING]
-> If zsh's `KEYTIMEOUT` is too small (e.g. 1), you may not be able
-> to hit two keys in time.
 
 ### Inside fzf
 

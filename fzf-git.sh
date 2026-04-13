@@ -237,8 +237,7 @@ _fzf_git_tree_files() {
 _fzf_git_branches() {
   _fzf_git_check || return
 
-  local shell
-  [[ -n ${BASH_VERSION:-} ]] && shell=bash || shell=zsh
+  local shell=bash
 
   bash "$__fzf_git" --list branches |
   __fzf_git_fzf=$(declare -f _fzf_git_fzf) _fzf_git_fzf --ansi \
@@ -389,7 +388,6 @@ if [[ $1 = --run ]]; then
   eval "_fzf_git_$type" "$@"
 
 elif [[ $- =~ i ]]; then # ------------------------------------------------------
-if [[ -n "${BASH_VERSION:-}" ]]; then
   __fzf_git_init() {
     bind -m emacs-standard '"\er":  redraw-current-line'
     bind -m emacs-standard '"\C-z": vi-editing-mode'
@@ -408,31 +406,6 @@ if [[ -n "${BASH_VERSION:-}" ]]; then
       bind -m vi-insert      '"\C-xg'$c'": "\C-z\C-g'$c'\C-z"'
     done
   }
-elif [[ -n "${ZSH_VERSION:-}" ]]; then
-  __fzf_git_join() {
-    local item
-    while read -r item; do
-      echo -n -E "${(q)${(Q)item}} "
-    done
-  }
-
-  __fzf_git_init() {
-    setopt localoptions no_glob
-    local m o
-    for o in "$@"; do
-      if [[ ${o[1]} == "?" ]];then
-        eval "fzf-git-$o-widget() { zle -M '$(_fzf_git_list_bindings)' }"
-      else
-        eval "fzf-git-$o-widget() { local result=\$(_fzf_git_$o | __fzf_git_join); zle reset-prompt; LBUFFER+=\$result }"
-      fi
-      eval "zle -N fzf-git-$o-widget"
-      for m in emacs vicmd viins; do
-        eval "bindkey -M $m '^g^${o[1]}' fzf-git-$o-widget"
-        eval "bindkey -M $m '^g${o[1]}' fzf-git-$o-widget"
-      done
-    done
-  }
-fi
-__fzf_git_init files branches tags remotes hashes stashes lreflogs each_ref worktrees '?list_bindings'
+  __fzf_git_init files branches tags remotes hashes stashes lreflogs each_ref worktrees '?list_bindings'
 
 fi # --------------------------------------------------------------------------
