@@ -149,8 +149,8 @@ if [[ $1 == --list ]]; then
         ;;
       linux*)
         # Handle WSL on Windows
-        if uname -a | grep -i -q Microsoft && command -v powershell.exe; then
-          powershell.exe -NoProfile start "$url$path"
+        if command -v wslview; then
+          wslview "$url$path"
         else
           xdg-open "$url$path"
         fi
