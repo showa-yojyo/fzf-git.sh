@@ -1,5 +1,10 @@
 # fzf-git-functions.sh: WIP
 
+if [ -n "$_fzf_git_functions_included" ]; then
+    return;
+fi
+readonly _fzf_git_functions_included=x
+
 # Return e.g. "https://github.com/USER/REPO" from branch
 function navigate_github {
     local OPTIND r o
