@@ -8,6 +8,7 @@ readonly _fzf_git_hashes_included=x
 _dir="$(dirname "${BASH_SOURCE[0]}")"
 source "$_dir/fzf-git-cat.sh"
 source "$_dir/fzf-git-color.sh"
+source "$_dir/fzf-git-pager.sh"
 unset _dir
 
 function _fzf_git-list-hashes {

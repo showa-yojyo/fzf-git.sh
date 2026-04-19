@@ -5,7 +5,10 @@ if [ -n "$_fzf_git_reflog_included" ]; then
 fi
 readonly _fzf_git_reflog_included=x
 
-source "$(dirname "${BASH_SOURCE[0]}")/fzf-git-color.sh"
+_dir="$(dirname "${BASH_SOURCE[0]}")"
+source "$_dir/fzf-git-color.sh"
+source "$_dir/fzf-git-pager.sh"
+unset _dir
 
 # TODO: rename
 _fzf_git_lreflogs() {

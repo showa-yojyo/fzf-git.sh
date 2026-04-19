@@ -23,13 +23,6 @@
 # shellcheck disable=SC2039
 [[ $0 == - ]] && return
 
-__fzf_git_pager() {
-  local pager
-  pager="${FZF_GIT_PAGER:-${GIT_PAGER:-$(git config --get core.pager 2> /dev/null)}}"
-  echo "${pager:-cat}"
-}
-export -f __fzf_git_pager
-
 if [[ $- =~ i ]]; then
   if [[ $__fzf_git_fzf ]]; then
     eval "$__fzf_git_fzf"
