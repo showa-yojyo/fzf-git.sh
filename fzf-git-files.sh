@@ -5,7 +5,10 @@ if [ -n "$_fzf_git_files_included" ]; then
 fi
 readonly _fzf_git_files_included=x
 
-source "$(dirname "${BASH_SOURCE[0]}")/fzf-git-color.sh"
+_dir="$(dirname "${BASH_SOURCE[0]}")"
+source "$_dir/fzf-git-cat.sh"
+source "$_dir/fzf-git-color.sh"
+unset _dir
 
 _fzf_git_files() {
   _fzf_git_check || return
