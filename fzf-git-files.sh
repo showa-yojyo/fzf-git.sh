@@ -5,6 +5,8 @@ if [ -n "$_fzf_git_files_included" ]; then
 fi
 readonly _fzf_git_files_included=x
 
+source "$(dirname "${BASH_SOURCE[0]}")/fzf-git-color.sh"
+
 _fzf_git_files() {
   _fzf_git_check || return
   local root query extract_file_name

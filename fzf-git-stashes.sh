@@ -5,6 +5,8 @@ if [ -n "$_fzf_git_stashes_included" ]; then
 fi
 readonly _fzf_git_stashes_included=x
 
+source "$(dirname "${BASH_SOURCE[0]}")/fzf-git-color.sh"
+
 _fzf_git_stashes() {
   _fzf_git_check || return
   git stash list | _fzf_git_fzf \

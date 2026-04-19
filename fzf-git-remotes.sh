@@ -5,6 +5,8 @@ if [ -n "$_fzf_git_remotes_included" ]; then
 fi
 readonly _fzf_git_remotes_included=x
 
+source "$(dirname "${BASH_SOURCE[0]}")/fzf-git-color.sh"
+
 _fzf_git_remotes() {
   _fzf_git_check || return
   git remote -v | awk '{print $1 "\t" $2}' | uniq |

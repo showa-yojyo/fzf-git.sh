@@ -23,17 +23,6 @@
 # shellcheck disable=SC2039
 [[ $0 == - ]] && return
 
-__fzf_git_color() {
-  if [[ -n $NO_COLOR ]]; then
-    echo never
-  elif [[ $# -gt 0 ]] && [[ -n $FZF_GIT_PREVIEW_COLOR ]]; then
-    echo "$FZF_GIT_PREVIEW_COLOR"
-  else
-    echo "${FZF_GIT_COLOR:-always}"
-  fi
-}
-export -f __fzf_git_color
-
 __fzf_git_cat() {
   if [[ -n $FZF_GIT_CAT ]]; then
     echo "$FZF_GIT_CAT"

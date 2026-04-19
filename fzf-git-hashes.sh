@@ -5,6 +5,8 @@ if [ -n "$_fzf_git_hashes_included" ]; then
 fi
 readonly _fzf_git_hashes_included=x
 
+source "$(dirname "${BASH_SOURCE[0]}")/fzf-git-color.sh"
+
 function _fzf_git-list-hashes {
     git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=$(__fzf_git_color) "$@" $LIST_OPTS
 }

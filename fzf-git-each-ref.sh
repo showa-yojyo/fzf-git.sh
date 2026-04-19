@@ -1,5 +1,12 @@
 # fzf-git-each-ref.sh: WIP
 
+if [ -n "$_fzf_git_each_ref_included" ]; then
+    return;
+fi
+readonly _fzf_git_each_ref_included=x
+
+source "$(dirname "${BASH_SOURCE[0]}")/fzf-git-color.sh"
+
 _fzf_git_each_ref() {
     _fzf_git_check || return
 

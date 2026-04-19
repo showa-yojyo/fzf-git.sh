@@ -5,6 +5,8 @@ if [ -n "$_fzf_git_worktree_included" ]; then
 fi
 readonly _fzf_git_worktree_included=x
 
+source "$(dirname "${BASH_SOURCE[0]}")/fzf-git-color.sh"
+
 _fzf_git_worktrees() {
     _fzf_git_check || return
     git worktree list | _fzf_git_fzf \
