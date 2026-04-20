@@ -40,9 +40,8 @@ if [[ $- =~ i ]]; then
     export -f _fzf_git_fzf
   fi
 
-  __fzf_git=$(readlink -f "${BASH_SOURCE[0]}" 2> /dev/null || /usr/bin/ruby --disable-gems -e 'puts File.expand_path(ARGV.first)' "$__fzf_git" 2> /dev/null)
-
-  fzf_git_dir="$(dirname "$__fzf_git")"
+  fzf_git_dir="$(dirname "$(readlink -f "${BASH_SOURCE[0]}" ||
+    echo "${BASH_SOURCE[0]}")")"
   source "$fzf_git_dir/fzf-git-branches.sh"
   source "$fzf_git_dir/fzf-git-each-ref.sh"
   source "$fzf_git_dir/fzf-git-files.sh"
