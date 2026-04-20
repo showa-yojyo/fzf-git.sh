@@ -19,11 +19,8 @@ __fzf_git_cat() {
     return
   fi
 
-  # Sometimes bat is installed as batcat
-  _fzf_git_bat_options="--style='${BAT_STYLE:-full}' --color=$(__fzf_git_color .) --pager=never"
-  if command -v batcat > /dev/null; then
-    echo "batcat $_fzf_git_bat_options"
-  elif command -v bat > /dev/null; then
+  declare -r _fzf_git_bat_options="--style='${BAT_STYLE:-full}' --color=$(__fzf_git_color .) --pager=never"
+  if command -v bat > /dev/null; then
     echo "bat $_fzf_git_bat_options"
   else
     echo cat
