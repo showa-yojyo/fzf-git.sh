@@ -43,12 +43,10 @@ if [[ $- =~ i ]]; then
   __fzf_git=$(readlink -f "${BASH_SOURCE[0]}" 2> /dev/null || /usr/bin/ruby --disable-gems -e 'puts File.expand_path(ARGV.first)' "$__fzf_git" 2> /dev/null)
 
   fzf_git_dir="$(dirname "$__fzf_git")"
-  set -a
   source "$fzf_git_dir/fzf-git-branches.sh"
-  source "$fzf_git_dir/fzf-git-hashes.sh"
-  set +a
   source "$fzf_git_dir/fzf-git-each-ref.sh"
   source "$fzf_git_dir/fzf-git-files.sh"
+  source "$fzf_git_dir/fzf-git-hashes.sh"
   source "$fzf_git_dir/fzf-git-reflog.sh"
   source "$fzf_git_dir/fzf-git-remotes.sh"
   source "$fzf_git_dir/fzf-git-stashes.sh"

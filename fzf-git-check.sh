@@ -12,3 +12,4 @@ _fzf_git_check() {
   [[ -n $TMUX ]] && tmux display-message "Not in a git repository"
   return 1
 }
+export -f _fzf_git_check

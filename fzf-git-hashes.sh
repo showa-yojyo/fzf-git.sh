@@ -19,12 +19,14 @@ unset -f _include
 function _fzf_git-list-hashes {
     git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=$(__fzf_git_color) "$@" $LIST_OPTS
 }
+export -f _fzf_git-list-hashes
 
 function _fzf-git-list-hashes-all {
     echo 'CTRL-O (open in browser) ╱ CTRL-D (diff)'
     echo 'CTRL-S (toggle sort) ╱ ALT-F (list files)'
     _fzf_git-list-hashes --all
 }
+export -f _fzf-git-list-hashes-all
 
 _fzf_git_tree_files() {
   _fzf_git_check || return
@@ -40,6 +42,7 @@ _fzf_git_tree_files() {
       --bind "alt-e:execute:${EDITOR:-vim} {}" \
       --preview "git -c core.quotePath=false diff --no-ext-diff --color=$(__fzf_git_color .) -- {} | $(__fzf_git_pager); $(__fzf_git_cat) {}"
 }
+export -f _fzf_git_tree_files
 
 _fzf_git_hashes() {
   _fzf_git_check || return
@@ -76,3 +79,4 @@ _fzf_git_hashes() {
         }
       '
 }
+export -f _fzf_git_hashes

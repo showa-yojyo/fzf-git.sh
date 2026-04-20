@@ -18,12 +18,14 @@ function _fzf_git-list-branches {
     git branch "$@" --sort=-committerdate --sort=-HEAD --format=$'%(HEAD) %(color:yellow)%(refname:short) %(color:green)(%(committerdate:relative))\t%(color:blue)%(subject)%(color:reset)' --color=$(__fzf_git_color) |
         column -ts$'\t'
 }
+export -f _fzf_git-list-branches
 
 function _fzf_git-list-branches-all {
     echo 'CTRL-O (open in browser) ╱ ALT-ENTER (accept without remote)'
     echo 'ALT-H (list commit hashes)'
     _fzf_git-list-branches -a
 }
+export -f _fzf_git-list-branches-all
 
 _fzf_git_branches() {
   _fzf_git_check || return

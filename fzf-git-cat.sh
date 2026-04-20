@@ -26,3 +26,4 @@ __fzf_git_cat() {
     echo cat
   fi
 }
+export -f __fzf_git_cat

@@ -10,3 +10,4 @@ __fzf_git_pager() {
   local pager="${FZF_GIT_PAGER:-${GIT_PAGER:-$(git config --get core.pager 2> /dev/null)}}"
   echo "${pager:-cat}"
 }
+export -f __fzf_git_pager

@@ -15,3 +15,4 @@ __fzf_git_color() {
     echo "${FZF_GIT_COLOR:-always}"
   fi
 }
+export -f __fzf_git_color

@@ -5,6 +5,10 @@ if [ -n "$_fzf_git_functions_included" ]; then
 fi
 readonly _fzf_git_functions_included=x
 
+# XXX: This file is for functions that are shared across multiple fzf-git-*.sh
+# files. It is not intended to be sourced directly.
+set -a
+
 # Return e.g. "https://github.com/USER/REPO" from branch
 function navigate_github {
     local OPTIND r o
@@ -95,3 +99,6 @@ function navigate_github_from_tag {
     local -r github_url=$(navigate_github)
     wslview "${github_url}/releases/tag/${tag}"
 }
+
+# XXX: See above.
+set +a
