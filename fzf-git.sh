@@ -47,16 +47,14 @@ if [[ $- =~ i ]]; then
   source "$fzf_git_dir/fzf-git-branches.sh"
   source "$fzf_git_dir/fzf-git-hashes.sh"
   source "$fzf_git_dir/fzf-git-refs.sh"
-  source "$fzf_git_dir/fzf-git-functions.sh"
+  set +a
+  source "$fzf_git_dir/fzf-git-each-ref.sh"
   source "$fzf_git_dir/fzf-git-files.sh"
-  source "$fzf_git_dir/fzf-git-tree.sh"
-  source "$fzf_git_dir/fzf-git-tags.sh"
   source "$fzf_git_dir/fzf-git-reflog.sh"
   source "$fzf_git_dir/fzf-git-remotes.sh"
   source "$fzf_git_dir/fzf-git-stashes.sh"
-  source "$fzf_git_dir/fzf-git-each-ref.sh"
+  source "$fzf_git_dir/fzf-git-tags.sh"
   source "$fzf_git_dir/fzf-git-worktree.sh"
-  set +a
   unset fzf_git_dir
 
   __fzf_git_init() {

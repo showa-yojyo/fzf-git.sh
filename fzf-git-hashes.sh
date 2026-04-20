@@ -10,6 +10,7 @@ function _include {
   source "$_dir/fzf-git-cat.sh"
   source "$_dir/fzf-git-check.sh"
   source "$_dir/fzf-git-color.sh"
+  source "$_dir/fzf-git-functions.sh"
   source "$_dir/fzf-git-pager.sh"
 }
 _include
