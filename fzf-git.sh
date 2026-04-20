@@ -55,9 +55,8 @@ if [[ $- =~ i ]]; then
   source "$fzf_git_dir/fzf-git-remotes.sh"
   source "$fzf_git_dir/fzf-git-stashes.sh"
   source "$fzf_git_dir/fzf-git-each-ref.sh"
-  set +a
-
   source "$fzf_git_dir/fzf-git-worktree.sh"
+  set +a
   unset fzf_git_dir
 
   __fzf_git_init() {
@@ -75,4 +74,5 @@ if [[ $- =~ i ]]; then
     done
   }
   __fzf_git_init files branches tags remotes hashes stashes lreflogs each_ref worktrees
+  unset -f __fzf_git_init
 fi

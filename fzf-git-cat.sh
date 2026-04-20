@@ -5,6 +5,13 @@ if [ -n "$_fzf_git_cat_included" ]; then
 fi
 readonly _fzf_git_cat_included=x
 
+function _include {
+  local -r _dir="$(dirname "${BASH_SOURCE[0]}")"
+  source "$_dir/fzf-git-color.sh"
+}
+_include
+unset -f _include
+
 # Determine the command to use for displaying file contents in git previews.
 __fzf_git_cat() {
   if [[ -n $FZF_GIT_CAT ]]; then

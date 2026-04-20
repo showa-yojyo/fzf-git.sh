@@ -5,10 +5,13 @@ if [ -n "$_fzf_git_branches_included" ]; then
 fi
 readonly _fzf_git_branches_included=x
 
-_dir="$(dirname "${BASH_SOURCE[0]}")"
-source "$_dir/fzf-git-check.sh"
-source "$_dir/fzf-git-color.sh"
-unset _dir
+function _include {
+  local -r _dir="$(dirname "${BASH_SOURCE[0]}")"
+  source "$_dir/fzf-git-color.sh"
+  source "$_dir/fzf-git-check.sh"
+}
+_include
+unset -f _include
 
 function _fzf_git-list-branches {
     git branch "$@" --sort=-committerdate --sort=-HEAD --format=$'%(HEAD) %(color:yellow)%(refname:short) %(color:green)(%(committerdate:relative))\t%(color:blue)%(subject)%(color:reset)' --color=$(__fzf_git_color) |

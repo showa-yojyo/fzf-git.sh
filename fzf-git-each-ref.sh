@@ -5,10 +5,13 @@ if [ -n "$_fzf_git_each_ref_included" ]; then
 fi
 readonly _fzf_git_each_ref_included=x
 
-_dir="$(dirname "${BASH_SOURCE[0]}")"
-source "$_dir/fzf-git-check.sh"
-source "$_dir/fzf-git-color.sh"
-unset _dir
+function _include {
+  local -r _dir="$(dirname "${BASH_SOURCE[0]}")"
+  source "$_dir/fzf-git-check.sh"
+  source "$_dir/fzf-git-color.sh"
+}
+_include
+unset -f _include
 
 _fzf_git_each_ref() {
     _fzf_git_check || return

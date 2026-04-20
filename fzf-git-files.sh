@@ -5,12 +5,15 @@ if [ -n "$_fzf_git_files_included" ]; then
 fi
 readonly _fzf_git_files_included=x
 
-_dir="$(dirname "${BASH_SOURCE[0]}")"
-source "$_dir/fzf-git-cat.sh"
-source "$_dir/fzf-git-check.sh"
-source "$_dir/fzf-git-color.sh"
-source "$_dir/fzf-git-pager.sh"
-unset _dir
+function _include {
+  local -r _dir="$(dirname "${BASH_SOURCE[0]}")"
+  source "$_dir/fzf-git-cat.sh"
+  source "$_dir/fzf-git-check.sh"
+  source "$_dir/fzf-git-color.sh"
+  source "$_dir/fzf-git-pager.sh"
+}
+_include
+unset -f _include
 
 _fzf_git_files() {
   _fzf_git_check || return
