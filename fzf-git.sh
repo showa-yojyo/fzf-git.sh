@@ -46,7 +46,6 @@ if [[ $- =~ i ]]; then
   set -a
   source "$fzf_git_dir/fzf-git-branches.sh"
   source "$fzf_git_dir/fzf-git-hashes.sh"
-  source "$fzf_git_dir/fzf-git-refs.sh"
   set +a
   source "$fzf_git_dir/fzf-git-each-ref.sh"
   source "$fzf_git_dir/fzf-git-files.sh"
