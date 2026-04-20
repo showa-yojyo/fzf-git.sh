@@ -42,9 +42,8 @@ if [[ $- =~ i ]]; then
 
   __fzf_git=$(readlink -f "${BASH_SOURCE[0]}" 2> /dev/null || /usr/bin/ruby --disable-gems -e 'puts File.expand_path(ARGV.first)' "$__fzf_git" 2> /dev/null)
 
-  set -a
   fzf_git_dir="$(dirname "$__fzf_git")"
-  source "$fzf_git_dir/fzf-git-check.sh"
+  set -a
   source "$fzf_git_dir/fzf-git-branches.sh"
   source "$fzf_git_dir/fzf-git-hashes.sh"
   source "$fzf_git_dir/fzf-git-refs.sh"
@@ -56,8 +55,10 @@ if [[ $- =~ i ]]; then
   source "$fzf_git_dir/fzf-git-remotes.sh"
   source "$fzf_git_dir/fzf-git-stashes.sh"
   source "$fzf_git_dir/fzf-git-each-ref.sh"
-  source "$fzf_git_dir/fzf-git-worktree.sh"
   set +a
+
+  source "$fzf_git_dir/fzf-git-worktree.sh"
+  unset fzf_git_dir
 
   __fzf_git_init() {
     bind -m emacs-standard '"\er":  redraw-current-line'
