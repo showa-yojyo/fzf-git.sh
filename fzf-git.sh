@@ -53,23 +53,6 @@ __fzf_git_init() {
   source "$fzf_git_dir/stashes.sh"
   source "$fzf_git_dir/tags.sh"
   source "$fzf_git_dir/worktree.sh"
-
-  bind -m emacs-standard '"\er": redraw-current-line'
-  declare -Ar bindings=(
-     [_fzf_git_files]='gf'
-     [_fzf_git_branches]='gb'
-     [_fzf_git_tags]='gt'
-     [_fzf_git_remotes]='gr'
-     [_fzf_git_hashes]='gh'
-     [_fzf_git_stashes]='gs'
-     [_fzf_git_lreflogs]='gl'
-     [_fzf_git_each_ref]='ge'
-     [_fzf_git_worktrees]='gw'
-   )
-   local key
-   for key in "${!bindings[@]}"; do
-     bind -m emacs-ctlx '"'${bindings[$key]}'":" \C-u \C-a\C-k`'${key}'`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\er \C-h"'
-   done
 }
 
 [[ $- =~ i ]] && __fzf_git_init "$@"
