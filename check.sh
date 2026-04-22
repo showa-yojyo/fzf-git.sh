@@ -1,4 +1,4 @@
-# fzf-git-check.sh: WIP
+# check.sh: WIP
 
 if [ -n "$_fzf_git_check_included" ]; then
     return;

@@ -1,12 +1,12 @@
-# fzf-git-functions.sh: WIP
+# navigate.sh: WIP
 
-if [ -n "$_fzf_git_functions_included" ]; then
+if [ -n "$_fzf_git_navigate_included" ]; then
     return;
 fi
-readonly _fzf_git_functions_included=x
+readonly _fzf_git_navigate_included=x
 
-# XXX: This file is for functions that are shared across multiple fzf-git-*.sh
-# files. It is not intended to be sourced directly.
+# XXX: This file is for functions that are shared across multiple .sh files. It
+# is not intended to be sourced directly.
 set -a
 
 # Return e.g. "https://github.com/USER/REPO" from branch

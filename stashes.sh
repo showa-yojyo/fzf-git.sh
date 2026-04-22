@@ -1,4 +1,4 @@
-# fzf-git-stashes.sh: WIP
+# stashes.sh: WIP
 
 if [ -n "$_fzf_git_stashes_included" ]; then
     return;

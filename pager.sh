@@ -1,4 +1,4 @@
-# fzf-git-pager.sh: WIP
+# pager.sh: WIP
 
 if [ -n "$_fzf_git_pager_included" ]; then
     return;

@@ -1,4 +1,4 @@
-# fzf-git-cat.sh: WIP
+# cat.sh: WIP
 
 if [ -n "$_fzf_git_cat_included" ]; then
     return;

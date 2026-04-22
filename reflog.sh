@@ -1,4 +1,4 @@
-# fzf-git-reflog.sh: WIP
+# reflog.sh: WIP
 
 if [ -n "$_fzf_git_reflog_included" ]; then
     return;

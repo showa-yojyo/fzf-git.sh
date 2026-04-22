@@ -1,4 +1,4 @@
-# fzf-git-files.sh: WIP
+# files.sh: WIP
 
 if [ -n "$_fzf_git_files_included" ]; then
     return;
@@ -10,7 +10,7 @@ function _include {
   source "$_dir/cat.sh"
   source "$_dir/check.sh"
   source "$_dir/color.sh"
-  source "$_dir/functions.sh"
+  source "$_dir/navigate.sh"
   source "$_dir/pager.sh"
 }
 _include

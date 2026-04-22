@@ -1,4 +1,4 @@
-# fzf-git-color.sh: WIP
+# color.sh: WIP
 
 if [ -n "$_fzf_git_color_included" ]; then
     return;

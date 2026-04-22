@@ -1,4 +1,4 @@
-# fzf-git-worktree.sh: WIP
+# worktree.sh: WIP
 
 if [ -n "$_fzf_git_worktree_included" ]; then
     return;

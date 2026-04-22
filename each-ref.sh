@@ -1,4 +1,4 @@
-# fzf-git-each-ref.sh: WIP
+# each-ref.sh: WIP
 
 if [ -n "$_fzf_git_each_ref_included" ]; then
     return;
@@ -9,7 +9,7 @@ function _include {
   local -r _dir="$(dirname "${BASH_SOURCE[0]}")"
   source "$_dir/check.sh"
   source "$_dir/color.sh"
-  source "$_dir/functions.sh"
+  source "$_dir/navigate.sh"
 }
 _include
 unset -f _include
