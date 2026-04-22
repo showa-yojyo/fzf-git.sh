@@ -7,10 +7,10 @@ readonly _fzf_git_tags_included=x
 
 function _include {
   local -r _dir="$(dirname "${BASH_SOURCE[0]}")"
-  source "$_dir/fzf-git-check.sh"
-  source "$_dir/fzf-git-color.sh"
-  source "$_dir/fzf-git-functions.sh"
-  source "$_dir/fzf-git-pager.sh"
+  source "$_dir/check.sh"
+  source "$_dir/color.sh"
+  source "$_dir/functions.sh"
+  source "$_dir/pager.sh"
 }
 _include
 unset -f _include

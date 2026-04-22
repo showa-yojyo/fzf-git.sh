@@ -23,50 +23,55 @@
 # shellcheck disable=SC2039
 [[ $0 == - ]] && return
 
-if [[ $- =~ i ]]; then
-  if [[ $__fzf_git_fzf ]]; then
-    eval "$__fzf_git_fzf"
-  else
-    # Redefine this function to change the options
-    _fzf_git_fzf() {
-      fzf --height 50% --tmux 90%,70% \
-        --layout reverse --multi --min-height 20+ --border \
-        --no-separator --header-border horizontal \
-        --border-label-pos 2 \
-        --color 'label:blue' \
-        --preview-window 'right,50%' --preview-border line \
-        --bind 'ctrl-/:change-preview-window(down,50%|hidden|)' "$@"
-    }
-    export -f _fzf_git_fzf
-  fi
+! [[ $- =~ i ]] && return
 
-  fzf_git_dir="$(dirname "$(readlink -f "${BASH_SOURCE[0]}" ||
-    echo "${BASH_SOURCE[0]}")")"
-  source "$fzf_git_dir/fzf-git-branches.sh"
-  source "$fzf_git_dir/fzf-git-each-ref.sh"
-  source "$fzf_git_dir/fzf-git-files.sh"
-  source "$fzf_git_dir/fzf-git-hashes.sh"
-  source "$fzf_git_dir/fzf-git-reflog.sh"
-  source "$fzf_git_dir/fzf-git-remotes.sh"
-  source "$fzf_git_dir/fzf-git-stashes.sh"
-  source "$fzf_git_dir/fzf-git-tags.sh"
-  source "$fzf_git_dir/fzf-git-worktree.sh"
-  unset fzf_git_dir
-
-  __fzf_git_init() {
-    bind -m emacs-standard '"\er":  redraw-current-line'
-    bind -m emacs-standard '"\C-z": vi-editing-mode'
-    bind -m vi-command     '"\C-z": emacs-editing-mode'
-    bind -m vi-insert      '"\C-z": emacs-editing-mode'
-
-    local o c
-    for o in "$@"; do
-      c=${o:0:1}
-      bind -m emacs-standard '"\C-xg'$c'": " \C-u \C-a\C-k`_fzf_git_'$o'`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\er \C-h"'
-      bind -m vi-command     '"\C-xg'$c'": "\C-z\C-g'$c'\C-z"'
-      bind -m vi-insert      '"\C-xg'$c'": "\C-z\C-g'$c'\C-z"'
-    done
+if [[ $__fzf_git_fzf ]]; then
+  eval "$__fzf_git_fzf"
+else
+  # Redefine this function to change the options
+  _fzf_git_fzf() {
+    fzf --height 50% --tmux 90%,70% \
+      --layout reverse --multi --min-height 20+ --border \
+      --no-separator --header-border horizontal \
+      --border-label-pos 2 \
+      --color 'label:blue' \
+      --preview-window 'right,50%' --preview-border line \
+      --bind 'ctrl-/:change-preview-window(down,50%|hidden|)' "$@"
   }
-  __fzf_git_init files branches tags remotes hashes stashes lreflogs each_ref worktrees
-  unset -f __fzf_git_init
+  export -f _fzf_git_fzf
 fi
+
+fzf_git_dir="$(dirname "$(readlink -f "${BASH_SOURCE[0]}" ||
+  echo "${BASH_SOURCE[0]}")")"
+source "$fzf_git_dir/branches.sh"
+source "$fzf_git_dir/each-ref.sh"
+source "$fzf_git_dir/files.sh"
+source "$fzf_git_dir/hashes.sh"
+source "$fzf_git_dir/reflog.sh"
+source "$fzf_git_dir/remotes.sh"
+source "$fzf_git_dir/stashes.sh"
+source "$fzf_git_dir/tags.sh"
+source "$fzf_git_dir/worktree.sh"
+unset fzf_git_dir
+
+# TODO: move key bindings to .inputrc
+__fzf_git_init() {
+  bind -m emacs-standard '"\er": redraw-current-line'
+  declare -Ar bindings=(
+     [_fzf_git_files]='gf'
+     [_fzf_git_branches]='gb'
+     [_fzf_git_tags]='gt'
+     [_fzf_git_remotes]='gr'
+     [_fzf_git_hashes]='gh'
+     [_fzf_git_stashes]='gs'
+     [_fzf_git_lreflogs]='gl'
+     [_fzf_git_each_ref]='ge'
+     [_fzf_git_worktrees]='gw'
+   )
+   local key
+   for key in "${!bindings[@]}"; do
+     bind -m emacs-ctlx '"'${bindings[$key]}'":" \C-u \C-a\C-k`'${key}'`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\er \C-h"'
+   done
+}
+__fzf_git_init
+unset -f __fzf_git_init
