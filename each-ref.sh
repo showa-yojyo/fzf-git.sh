@@ -54,7 +54,7 @@ function fzf_git_each_ref {
       echo 'CTRL-O (open in browser) ╱ ALT-E (examine in editor) ╱ ALT-A (show all refs)'
       _fzf_git-list-refs --exclude='refs/remotes'
     ) |
-    _fzf_git_fzf --ansi \
+    fzf_git_fzf --ansi \
     --nth 2,2.. \
     --tiebreak begin \
     --border-label '☘️  Each ref ' \

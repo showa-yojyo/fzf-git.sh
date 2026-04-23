@@ -36,7 +36,7 @@ unset -f _include
 
 function fzf_git_worktrees {
     _fzf_git_check || return
-    git worktree list | _fzf_git_fzf \
+    git worktree list | fzf_git_fzf \
       --border-label '🌴 Worktrees ' \
       --header 'CTRL-X (remove worktree)' \
       --bind 'ctrl-x:reload(git worktree remove {1} > /dev/null; git worktree list)' \

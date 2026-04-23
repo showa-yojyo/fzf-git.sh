@@ -59,7 +59,7 @@ function fzf_git_branches {
     echo 'ALT-H (list commit hashes)'
     _fzf_git-list-branches
   ) |
-  __fzf_git_fzf=$(declare -f _fzf_git_fzf) _fzf_git_fzf --ansi \
+  fzf_git_fzf --ansi \
     --border-label '🌲 Branches ' \
     --header-lines 2 \
     --tiebreak begin \

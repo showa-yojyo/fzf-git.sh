@@ -56,7 +56,7 @@ function _fzf_git_tree_files {
   for treeish in "$@"; do
     git diff-tree --no-commit-id --name-only "$treeish" -r
   done | sort -u |
-    _fzf_git_fzf -m \
+    fzf_git_fzf -m \
       --border-label "📂 Files in $* " \
       --header 'CTRL-O (open in browser) ╱ ALT-E (open in editor)' \
       --bind "ctrl-o:execute-silent(navigate_github_from_file {})" \
@@ -73,7 +73,7 @@ function fzf_git_hashes {
     echo 'ALT-R (toggle raw mode) ╱ ALT-F (list files) ╱ ALT-A (show all hashes)'
     _fzf_git-list-hashes
   ) |
-  _fzf_git_fzf --ansi --no-sort --bind 'ctrl-s:toggle-sort,alt-r:toggle-raw' \
+  fzf_git_fzf --ansi --no-sort --bind 'ctrl-s:toggle-sort,alt-r:toggle-raw' \
     --border-label '🍡 Hashes ' \
     --header-lines 2 \
     --bind "ctrl-o:execute-silent(navigate_github_from_commit {})" \

@@ -32,7 +32,7 @@ Customization
 
 ```sh
 # Redefine this function to change the options
-_fzf_git_fzf() {
+fzf_git_fzf() {
   fzf --height 50% --tmux 90%,70% \
     --layout reverse --multi --min-height 20+ --border \
     --no-separator --header-border horizontal \
@@ -46,16 +46,16 @@ _fzf_git_fzf() {
 Defining shortcut commands
 --------------------------
 
-Each binding is backed by `_fzf_git_*` function so you can do something like
+Each binding is backed by `fzf_git_*` function so you can do something like
 this in your shell configuration file.
 
 ```sh
 gco() {
-  _fzf_git_each_ref --no-multi | xargs git checkout
+  fzf_git_each_ref --no-multi | xargs git checkout
 }
 
 gswt() {
-  cd "$(_fzf_git_worktrees --no-multi)"
+  cd "$(fzf_git_worktrees --no-multi)"
 }
 ```
 

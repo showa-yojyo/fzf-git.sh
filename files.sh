@@ -55,7 +55,7 @@ EOF
       echo :
     ) | sed 's/^/   /'
   ) |
-    _fzf_git_fzf -m --ansi --nth 2..,.. \
+    fzf_git_fzf -m --ansi --nth 2..,.. \
       --border-label '📁 Files ' \
       --header 'CTRL-O (open in browser) ╱ ALT-E (open in editor)' \
       --bind "ctrl-o:execute-silent(navigate_github_from_file $extract_file_name)" \

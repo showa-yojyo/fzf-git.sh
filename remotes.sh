@@ -38,7 +38,7 @@ unset -f _include
 function fzf_git_remotes {
   _fzf_git_check || return
   git remote -v | awk '{print $1 "\t" $2}' | uniq |
-  _fzf_git_fzf --tac \
+  fzf_git_fzf --tac \
     --border-label '📡 Remotes ' \
     --header 'CTRL-O (open in browser)' \
     --bind "ctrl-o:execute-silent(navigate_github_from_remote {})" \

@@ -39,7 +39,7 @@ unset -f _include
 function fzf_git_tags {
   _fzf_git_check || return
   git tag --sort -version:refname |
-  _fzf_git_fzf --preview-window right,70% \
+  fzf_git_fzf --preview-window right,70% \
     --border-label '📛 Tags ' \
     --header 'CTRL-O (open in browser)' \
     --bind "ctrl-o:execute-silent(navigate_github_from_tag {})" \
