@@ -36,7 +36,7 @@ function _include {
 _include
 unset -f _include
 
-_fzf_git_tags() {
+function fzf_git_tags {
   _fzf_git_check || return
   git tag --sort -version:refname |
   _fzf_git_fzf --preview-window right,70% \

@@ -35,8 +35,7 @@ function _include {
 _include
 unset -f _include
 
-# TODO: rename
-_fzf_git_lreflogs() {
+function fzf_git_reflogs {
   _fzf_git_check || return
   git reflog --color=$(__fzf_git_color) --format="%C(blue)%gD %C(yellow)%h%C(auto)%d %gs" |
     _fzf_git_fzf --ansi \

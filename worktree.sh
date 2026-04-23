@@ -34,7 +34,7 @@ function _include {
 _include
 unset -f _include
 
-_fzf_git_worktrees() {
+function fzf_git_worktrees {
     _fzf_git_check || return
     git worktree list | _fzf_git_fzf \
       --border-label '🌴 Worktrees ' \

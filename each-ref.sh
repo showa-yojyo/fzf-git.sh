@@ -47,7 +47,7 @@ function _fzf_git-list-refs-all {
 }
 export -f _fzf_git-list-refs-all
 
-_fzf_git_each_ref() {
+function fzf_git_each_ref {
     _fzf_git_check || return
 
     (

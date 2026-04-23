@@ -49,7 +49,7 @@ function _fzf-git-list-hashes-all {
 }
 export -f _fzf-git-list-hashes-all
 
-_fzf_git_tree_files() {
+function _fzf_git_tree_files {
   _fzf_git_check || return
 
   local treeish
@@ -65,7 +65,7 @@ _fzf_git_tree_files() {
 }
 export -f _fzf_git_tree_files
 
-_fzf_git_hashes() {
+function fzf_git_hashes {
   _fzf_git_check || return
 
   (
@@ -100,4 +100,4 @@ _fzf_git_hashes() {
         }
       '
 }
-export -f _fzf_git_hashes
+export -f fzf_git_hashes

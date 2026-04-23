@@ -35,7 +35,7 @@ function _include {
 _include
 unset -f _include
 
-_fzf_git_stashes() {
+function fzf_git_stashes {
   _fzf_git_check || return
   git stash list | _fzf_git_fzf \
     --border-label '🥡 Stashes ' \

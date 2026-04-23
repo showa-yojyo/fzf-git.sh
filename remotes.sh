@@ -35,7 +35,7 @@ function _include {
 _include
 unset -f _include
 
-_fzf_git_remotes() {
+function fzf_git_remotes {
   _fzf_git_check || return
   git remote -v | awk '{print $1 "\t" $2}' | uniq |
   _fzf_git_fzf --tac \

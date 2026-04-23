@@ -37,7 +37,7 @@ function _include {
 _include
 unset -f _include
 
-_fzf_git_files() {
+function fzf_git_files {
   _fzf_git_check || return
   local root query extract_file_name
   root=$(git rev-parse --show-toplevel)
