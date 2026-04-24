@@ -1,71 +1,75 @@
-fzf-git.sh
-==========
+# fzf-git.sh Learning Version
 
-bash functions for Git objects, powered by [fzf].
+> [!important]
+> This repository is for my personal study only. The original and official
+> [README] of [fzf-git.sh] is available here:
+> <https://github.com/junegunn/fzf-git.sh/blob/main/README.md>
 
-<img width="1680" alt="image" src="https://user-images.githubusercontent.com/700826/185568470-20d70937-eea4-4274-aec5-14dfe7ee2de6.png">
+**Table of Contents**
 
-[fzf]: https://github.com/junegunn/fzf
+* [fzf-git.sh Learning Version](#fzf-gitsh-learning-version)
+  * [Installation](#installation)
+  * [Usage](#usage)
+    * [List of bindings](#list-of-bindings)
+    * [Inside fzf](#inside-fzf)
+  * [Customization](#customization)
+  * [Defining shortcut commands](#defining-shortcut-commands)
+  * [Environment Variables](#environment-variables)
 
-Installation
-------------
+## Installation
 
-* Install the latest version of [fzf]
-    * (Optional) Install [bat](https://github.com/sharkdp/bat) for
-      syntax-highlighted file previews
-    * Git v2.42.0 or later is required for the `git for-each-ref`
-* Update your shell configuration file
-    * bash
-        * Source [fzf-git.sh](https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.sh) file from your .bashrc
+See the original [README].
 
-Usage
------
+## Usage
+
+### List of bindings
+
+All the original bindings in `fzf-git.sh` were removed. To reproduce the
+original bindings, set as follows in `.inputrc`:
+
+```raw
+# .inputrc
+
+$if mode=emacs
+  set keymap emacs-ctlx
+
+  # \e[0n: redraw-current-line
+  "gb": " \C-u \C-a\C-k`fzf_git_branches`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
+  "ge": " \C-u \C-a\C-k`fzf_git_each_ref`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
+  "gf": " \C-u \C-a\C-k`fzf_git_files`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
+  "gh": " \C-u \C-a\C-k`fzf_git_hashes`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
+  "gl": " \C-u \C-a\C-k`fzf_git_reflogs`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
+  "gr": " \C-u \C-a\C-k`fzf_git_remotes`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
+  "gs": " \C-u \C-a\C-k`fzf_git_stashes`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
+  "gt": " \C-u \C-a\C-k`fzf_git_tags`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
+  "gw": " \C-u \C-a\C-k`fzf_git_worktrees`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
+$endif
+```
+
+Of course `bind -m` can also be used.
+
+For example, <kbd>Ctrl</kbd>+<kbd>X</kbd>, <kbd>G</kbd>, <kbd>B</kbd> invokes
+fzf-git.sh command `fzf_git_branches`.
+
+> [!tip]
+> `bind -S | grep fzf_git` shows fzf-git.sh-related key bindings.
 
 ### Inside fzf
 
-* <kbd>TAB</kbd> or <kbd>SHIFT-TAB</kbd> to select multiple objects
-* <kbd>CTRL-/</kbd> to change preview window layout
-* <kbd>CTRL-O</kbd> to open the object in the web browser (in GitHub URL scheme)
+<kbd>Tab</kbd>/<kbd>Shift</kbd>+<kbd>Tab</kbd>, <kbd>Ctrl</kbd>+<kbd>/</kbd>,
+and <kbd>Ctrl</kbd>+<kbd>O</kbd> are also available in my version.
 
-Customization
--------------
+## Customization
 
-```sh
-# Redefine this function to change the options
-fzf_git_fzf() {
-  fzf --height 50% --tmux 90%,70% \
-    --layout reverse --multi --min-height 20+ --border \
-    --no-separator --header-border horizontal \
-    --border-label-pos 2 \
-    --color 'label:blue' \
-    --preview-window 'right,50%' --preview-border line \
-    --bind 'ctrl-/:change-preview-window(down,50%|hidden|)' "$@"
-}
-```
+See the original [README]. `_fzf_git_fzf` is now renamed to `fzf_git_fzf`.
 
-Defining shortcut commands
---------------------------
+## Defining shortcut commands
 
-Each binding is backed by `fzf_git_*` function so you can do something like
-this in your shell configuration file.
+See the original [README]. Available functions are slightly renamed.
 
-```sh
-gco() {
-  fzf_git_each_ref --no-multi | xargs git checkout
-}
+## Environment Variables
 
-gswt() {
-  cd "$(fzf_git_worktrees --no-multi)"
-}
-```
+See the original [README].
 
-Environment Variables
----------------------
-
-| Variable                | Description                                              | Default                                         |
-| ----------------------- | -------------------------------------------------------- | ----------------------------------------------- |
-| `BAT_STYLE`             | Specifies the style for displaying files using `bat`     | `full`                                          |
-| `FZF_GIT_CAT`           | Defines the preview command used for displaying the file | `bat --style=$BAT_STYLE --color=$FZF_GIT_COLOR` |
-| `FZF_GIT_COLOR`         | Set to `never` to suppress colors in the list            | `always`                                        |
-| `FZF_GIT_PAGER`         | Specifies the pager command for the preview window       | `$(git config --get core.pager)`                |
-| `FZF_GIT_PREVIEW_COLOR` | Set to `never` to suppress colors in the preview window  | `always`                                        |
+[fzf-git.sh]: <https://github.com/junegunn/fzf-git.sh>
+[README]: <https://github.com/junegunn/fzf-git.sh/blob/main/README.md>
