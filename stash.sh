@@ -21,10 +21,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-if [ -n "$_fzf_git_stashes_included" ]; then
+if [ -n "$_fzf_git_stash_included" ]; then
     return;
 fi
-readonly _fzf_git_stashes_included=x
+readonly _fzf_git_stash_included=x
 
 function _include {
   local -r _dir="$(dirname "${BASH_SOURCE[0]}")"
@@ -35,7 +35,7 @@ function _include {
 _include
 unset -f _include
 
-function fzf_git_stashes {
+function fzf_git_stash {
   _fzf_git_check || return
   git stash list | fzf_git_fzf \
     --border-label '🥡 Stashes ' \

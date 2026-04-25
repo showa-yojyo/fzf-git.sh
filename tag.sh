@@ -21,10 +21,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-if [ -n "$_fzf_git_tags_included" ]; then
+if [ -n "$_fzf_git_tag_included" ]; then
     return;
 fi
-readonly _fzf_git_tags_included=x
+readonly _fzf_git_tag_included=x
 
 function _include {
   local -r _dir="$(dirname "${BASH_SOURCE[0]}")"
@@ -36,7 +36,7 @@ function _include {
 _include
 unset -f _include
 
-function fzf_git_tags {
+function fzf_git_tag {
   _fzf_git_check || return
   git tag --sort -version:refname |
   fzf_git_fzf --preview-window right,70% \

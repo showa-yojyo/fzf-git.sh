@@ -21,10 +21,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-if [ -n "$_fzf_git_branches_included" ]; then
+if [ -n "$_fzf_git_branch_included" ]; then
     return;
 fi
-readonly _fzf_git_branches_included=x
+readonly _fzf_git_branch_included=x
 
 function _include {
   local -r _dir="$(dirname "${BASH_SOURCE[0]}")"
@@ -48,7 +48,7 @@ function _fzf_git-list-branches-all {
 }
 export -f _fzf_git-list-branches-all
 
-function fzf_git_branches {
+function fzf_git_branch {
   _fzf_git_check || return
 
   # Note:
@@ -69,7 +69,7 @@ function fzf_git_branches {
     --bind 'ctrl-/:change-preview-window(down,70%|hidden|)' \
     --bind "ctrl-o:execute-silent(navigate_github_from_branch {})" \
     --bind "alt-a:change-border-label(🌳 All branches)+reload(_fzf_git-list-branches-all)" \
-    --bind "alt-h:become:LIST_OPTS=\$(cut -c3- <<< {} | cut -d' ' -f1) fzf_git_hashes" \
+    --bind "alt-h:become:LIST_OPTS=\$(cut -c3- <<< {} | cut -d' ' -f1) fzf_git_hash" \
     --bind "alt-enter:become:printf '%s\n' {+} | cut -c3- | sed 's@[^/]*/@@'" \
     --preview "git log --oneline --graph --date=short --color=$(__fzf_git_color .) --pretty='format:%C(auto)%cd %h%d %s' \$(cut -c3- <<< {} | cut -d' ' -f1) --" "$@" |
       sed 's/^\* //' | awk '{print $1}' # Slightly modified to work with hashes as well

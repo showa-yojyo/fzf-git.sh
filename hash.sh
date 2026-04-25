@@ -21,10 +21,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-if [ -n "$_fzf_git_hashes_included" ]; then
+if [ -n "$_fzf_git_hash_included" ]; then
     return;
 fi
-readonly _fzf_git_hashes_included=x
+readonly _fzf_git_hash_included=x
 
 function _include {
   local -r _dir="$(dirname "${BASH_SOURCE[0]}")"
@@ -65,7 +65,7 @@ function _fzf_git_tree_files {
 }
 export -f _fzf_git_tree_files
 
-function fzf_git_hashes {
+function fzf_git_hash {
   _fzf_git_check || return
 
   (
@@ -100,4 +100,4 @@ function fzf_git_hashes {
         }
       '
 }
-export -f fzf_git_hashes
+export -f fzf_git_hash

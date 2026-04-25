@@ -21,10 +21,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-if [ -n "$_fzf_git_remotes_included" ]; then
+if [ -n "$_fzf_git_remote_included" ]; then
     return;
 fi
-readonly _fzf_git_remotes_included=x
+readonly _fzf_git_remote_included=x
 
 function _include {
   local -r _dir="$(dirname "${BASH_SOURCE[0]}")"
@@ -35,7 +35,7 @@ function _include {
 _include
 unset -f _include
 
-function fzf_git_remotes {
+function fzf_git_remote {
   _fzf_git_check || return
   git remote -v | awk '{print $1 "\t" $2}' | uniq |
   fzf_git_fzf --tac \

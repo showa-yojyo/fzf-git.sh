@@ -34,22 +34,22 @@ $if mode=emacs
   set keymap emacs-ctlx
 
   # \e[0n: redraw-current-line
-  "gb": " \C-u \C-a\C-k`fzf_git_branches`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
+  "gb": " \C-u \C-a\C-k`fzf_git_branch`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
   "ge": " \C-u \C-a\C-k`fzf_git_each_ref`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
-  "gf": " \C-u \C-a\C-k`fzf_git_files`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
-  "gh": " \C-u \C-a\C-k`fzf_git_hashes`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
-  "gl": " \C-u \C-a\C-k`fzf_git_reflogs`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
-  "gr": " \C-u \C-a\C-k`fzf_git_remotes`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
-  "gs": " \C-u \C-a\C-k`fzf_git_stashes`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
-  "gt": " \C-u \C-a\C-k`fzf_git_tags`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
-  "gw": " \C-u \C-a\C-k`fzf_git_worktrees`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
+  "gf": " \C-u \C-a\C-k`fzf_git_file`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
+  "gh": " \C-u \C-a\C-k`fzf_git_hash`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
+  "gl": " \C-u \C-a\C-k`fzf_git_reflog`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
+  "gr": " \C-u \C-a\C-k`fzf_git_remote`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
+  "gs": " \C-u \C-a\C-k`fzf_git_stash`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
+  "gt": " \C-u \C-a\C-k`fzf_git_tag`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
+  "gw": " \C-u \C-a\C-k`fzf_git_worktree`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
 $endif
 ```
 
 Of course `bind -m` can also be used.
 
 For example, <kbd>Ctrl</kbd>+<kbd>X</kbd>, <kbd>G</kbd>, <kbd>B</kbd> invokes
-fzf-git.sh command `fzf_git_branches`.
+fzf-git.sh command `fzf_git_branch`.
 
 > [!tip]
 > `bind -S | grep fzf_git` shows fzf-git.sh-related key bindings.

@@ -21,10 +21,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-if [ -n "$_fzf_git_files_included" ]; then
+if [ -n "$_fzf_git_file_included" ]; then
     return;
 fi
-readonly _fzf_git_files_included=x
+readonly _fzf_git_file_included=x
 
 function _include {
   local -r _dir="$(dirname "${BASH_SOURCE[0]}")"
@@ -37,7 +37,7 @@ function _include {
 _include
 unset -f _include
 
-function fzf_git_files {
+function fzf_git_file {
   _fzf_git_check || return
   local root query extract_file_name
   root=$(git rev-parse --show-toplevel)
