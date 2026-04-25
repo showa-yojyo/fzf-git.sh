@@ -41,14 +41,14 @@ function _fzf_git_init {
 
   local -r fzf_git_dir="$(dirname "$(readlink -f "${BASH_SOURCE[0]}" ||
     echo "${BASH_SOURCE[0]}")")"
-  source "$fzf_git_dir/branches.sh"
+  source "$fzf_git_dir/branch.sh"
   source "$fzf_git_dir/each-ref.sh"
-  source "$fzf_git_dir/files.sh"
-  source "$fzf_git_dir/hashes.sh"
+  source "$fzf_git_dir/file.sh"
+  source "$fzf_git_dir/hash.sh"
   source "$fzf_git_dir/reflog.sh"
-  source "$fzf_git_dir/remotes.sh"
-  source "$fzf_git_dir/stashes.sh"
-  source "$fzf_git_dir/tags.sh"
+  source "$fzf_git_dir/remote.sh"
+  source "$fzf_git_dir/stash.sh"
+  source "$fzf_git_dir/tag.sh"
   source "$fzf_git_dir/worktree.sh"
 }
 
