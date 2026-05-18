@@ -36,6 +36,9 @@ unset -f _include
 
 function fzf_git_worktree {
     _fzf_git_check || return
+
+    # The output of `git worktree list` is in the format of:
+    #   /path/to/worktree  <commit-ish> [<branch-name>]
     git worktree list | fzf_git_fzf \
       --border-label '🌴 Worktrees ' \
       --header 'CTRL-X (remove worktree)' \
@@ -45,5 +48,5 @@ function fzf_git_worktree {
         echo
         git log --oneline --graph --date=short --color=$(__fzf_git_color .) --pretty='format:%C(auto)%cd %h%d %s' {2} --
       " "$@" |
-    awk '{print $1}'
+    cut -d$" " -f1  # Extract the worktree path.
 }
