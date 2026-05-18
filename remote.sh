@@ -37,12 +37,14 @@ unset -f _include
 
 function fzf_git_remote {
   _fzf_git_check || return
-  git remote -v | awk '{print $1 "\t" $2}' | uniq |
+
+  # Drop "(fetch)" and "(push)" suffixes, and remove duplicates.
+  git remote -v | awk -v OFS='\t' '{print $1, $2}' | uniq |
   fzf_git_fzf --tac \
     --border-label '📡 Remotes ' \
     --header 'CTRL-O (open in browser)' \
     --bind "ctrl-o:execute-silent(navigate_github_from_remote {})" \
     --preview-window right,70% \
     --preview "git log --oneline --graph --date=short --color=$(__fzf_git_color .) --pretty='format:%C(auto)%cd %h%d %s' '{1}/$(git rev-parse --abbrev-ref HEAD)' --" "$@" |
-  cut -d$'\t' -f1
+  cut -f1
 }
