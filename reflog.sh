@@ -44,5 +44,5 @@ function fzf_git_reflog {
       --header "ALT-R (toggle raw mode)" \
       --preview "git show --color=$(__fzf_git_color .) {1} |
         $(__fzf_git_pager)" "$@" |
-          awk '{print $1}'
+          cut -d' ' -f2
 }
