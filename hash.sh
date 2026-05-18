@@ -80,12 +80,12 @@ function fzf_git_hash {
     --bind "ctrl-d:execute:grep -o '[a-f0-9]\{7,\}' <<< {} | head -n 1 | xargs git diff --color=$(__fzf_git_color) > /dev/tty" \
     --bind "alt-a:change-border-label(🍇 All hashes)+reload(_fzf_git-list-hashes-all)" \
     --bind "alt-f:become:echo ::tree_files;
-      awk 'match(\$0, /[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]*/) {
-        print substr(\$0, RSTART, RLENGTH)
+      awk 'match(\$0, /[a-f0-9]{7,}/) {
+        print substr(\$0, RSTART, RLENGTH)b
       }' {+f} |
         xargs -n1 -I @@@ bash -c '_fzf_git_tree_files @@@'" \
     --color hl:underline,hl+:underline \
-    --preview "grep -o '[a-f0-9]\{7,\}' <<< {} | head -n 1 | xargs git show --color=$(__fzf_git_color .) | $(__fzf_git_pager)" "$@" |
+    --preview "grep -oE '[a-f0-9]{7,}' <<< {} | head -n 1 | xargs git show --color=$(__fzf_git_color .) | $(__fzf_git_pager)" "$@" |
       awk '
         NR==1 && $0=="::tree_files" {
           mode="tree_files"
@@ -95,7 +95,7 @@ function fzf_git_hash {
           print
           next
         }
-        match($0, /[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]*/) {
+        match($0, /[a-f0-9]{7,}/) {
           print substr($0, RSTART, RLENGTH)
         }
       '
