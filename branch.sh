@@ -72,5 +72,5 @@ function fzf_git_branch {
     --bind "alt-h:become:LIST_OPTS=\$(cut -c3- <<< {} | cut -d' ' -f1) fzf_git_hash" \
     --bind "alt-enter:become:printf '%s\n' {+} | cut -c3- | sed 's@[^/]*/@@'" \
     --preview "git log --oneline --graph --date=short --color=$(__fzf_git_color .) --pretty='format:%C(auto)%cd %h%d %s' \$(cut -c3- <<< {} | cut -d' ' -f1) --" "$@" |
-      sed 's/^\* //' | awk '{print $1}' # Slightly modified to work with hashes as well
+      cut -c3- | cut -d' ' -f1
 }
