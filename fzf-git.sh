@@ -21,7 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-[[ $0 == - ]] && return
+[[ -z "$PS1" ]] && return
 
 function _fzf_git_init {
   unset -f _fzf_git_init
@@ -51,4 +51,4 @@ function _fzf_git_init {
   source "$fzf_git_dir/worktree.sh"
 }
 
-[[ $- =~ i ]] && _fzf_git_init "$@"
+_fzf_git_init "$@"
