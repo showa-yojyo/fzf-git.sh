@@ -21,12 +21,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-if [ -n "$_fzf_git_reflog_included" ]; then
+if [[ -n "$_fzf_git_reflog_included" ]]; then
     return;
 fi
 readonly _fzf_git_reflog_included=x
 
-function _include {
+function _include {\
   local -r _dir="$(dirname "${BASH_SOURCE[0]}")"
   source "$_dir/check.sh"
   source "$_dir/color.sh"
@@ -37,12 +37,13 @@ unset -f _include
 
 function fzf_git_reflog {
   _fzf_git_check || return
-  git reflog --color=$(__fzf_git_color) --format="%C(blue)%gD %C(yellow)%h%C(auto)%d %gs" |
-    fzf_git_fzf --ansi \
-      --border-label '📒 Reflogs ' \
-      --bind 'alt-r:toggle-raw' \
-      --header "ALT-R (toggle raw mode)" \
-      --preview "git show --color=$(__fzf_git_color .) {1} |
-        $(__fzf_git_pager)" "$@" |
-          cut -d' ' -f2
+  git reflog --color="$(__fzf_git_color)" \
+    --format="%C(blue)%gD %C(yellow)%h%C(auto)%d %gs" |
+      fzf_git_fzf --ansi \
+        --border-label '📒 Reflogs ' \
+        --bind 'alt-r:toggle-raw' \
+        --header "ALT-R (toggle raw mode)" \
+        --preview "git show --color=$(__fzf_git_color .) {1} |
+          $(__fzf_git_pager)" "$@" |
+            cut -d' ' -f2
 }

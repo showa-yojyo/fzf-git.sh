@@ -21,7 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-if [ -n "$_fzf_git_remote_included" ]; then
+if [[ -n "$_fzf_git_remote_included" ]]; then
     return;
 fi
 readonly _fzf_git_remote_included=x
@@ -40,11 +40,11 @@ function fzf_git_remote {
 
   # Drop "(fetch)" and "(push)" suffixes, and remove duplicates.
   git remote -v | awk -v OFS='\t' '{print $1, $2}' | uniq |
-  fzf_git_fzf --tac \
-    --border-label '📡 Remotes ' \
-    --header 'CTRL-O (open in browser)' \
-    --bind "ctrl-o:execute-silent(navigate_github_from_remote {})" \
-    --preview-window right,70% \
-    --preview "git log --oneline --graph --date=short --color=$(__fzf_git_color .) --pretty='format:%C(auto)%cd %h%d %s' '{1}/$(git rev-parse --abbrev-ref HEAD)' --" "$@" |
+    fzf_git_fzf --tac \
+      --border-label '📡 Remotes ' \
+      --header 'CTRL-O (open in browser)' \
+      --bind "ctrl-o:execute-silent(navigate_github_from_remote {})" \
+      --preview-window right,70% \
+      --preview "git log --oneline --graph --date=short --color=$(__fzf_git_color .) --pretty='format:%C(auto)%cd %h%d %s' '{1}/$(git rev-parse --abbrev-ref HEAD)' --" "$@" |
   cut -f1
 }

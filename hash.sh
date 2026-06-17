@@ -21,7 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-if [ -n "$_fzf_git_hash_included" ]; then
+if [[ -n "$_fzf_git_hash_included" ]]; then
     return;
 fi
 readonly _fzf_git_hash_included=x
@@ -38,7 +38,8 @@ _include
 unset -f _include
 
 function _fzf_git-list-hashes {
-    git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=$(__fzf_git_color) "$@" $LIST_OPTS
+    git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" \
+      --graph --color="$(__fzf_git_color)" "$@" "$LIST_OPTS"
 }
 export -f _fzf_git-list-hashes
 

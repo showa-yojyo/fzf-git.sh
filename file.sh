@@ -21,7 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-if [ -n "$_fzf_git_file_included" ]; then
+if [[ -n "$_fzf_git_file_included" ]]; then
     return;
 fi
 readonly _fzf_git_file_included=x
@@ -48,7 +48,8 @@ function fzf_git_file {
 EOF
 
   (
-    git -c core.quotePath=false -c color.status=$(__fzf_git_color) status --short --no-branch --untracked-files=all
+    git -c core.quotePath=false -c color.status="$(__fzf_git_color)" status \
+      --short --no-branch --untracked-files=all
     git -c core.quotePath=false ls-files "$root" | grep -vxFf <(
       git -c core.quotePath=false status --short --untracked-files=no |
         cut -c4- | sed -e 's/.* -> //' -e '/^"[^"\\]*"$/ { s/^"//;s/"$//; }'

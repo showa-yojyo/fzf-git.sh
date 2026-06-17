@@ -21,7 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-if [ -n "$_fzf_git_cat_included" ]; then
+if [[ -n "$_fzf_git_cat_included" ]]; then
     return;
 fi
 readonly _fzf_git_cat_included=x
@@ -34,7 +34,7 @@ _include
 unset -f _include
 
 # Determine the command to use for displaying file contents in git previews.
-__fzf_git_cat() {
+function __fzf_git_cat {
   if [[ -n $FZF_GIT_CAT ]]; then
     echo "$FZF_GIT_CAT"
     return

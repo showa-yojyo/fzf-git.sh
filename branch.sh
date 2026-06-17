@@ -21,7 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-if [ -n "$_fzf_git_branch_included" ]; then
+if [[ -n "$_fzf_git_branch_included" ]]; then
     return;
 fi
 readonly _fzf_git_branch_included=x
@@ -36,7 +36,9 @@ _include
 unset -f _include
 
 function _fzf_git-list-branches {
-    git branch "$@" --sort=-committerdate --sort=-HEAD --format=$'%(HEAD) %(color:yellow)%(refname:short) %(color:green)(%(committerdate:relative))\t%(color:blue)%(subject)%(color:reset)' --color=$(__fzf_git_color) |
+    git branch "$@" --sort=-committerdate --sort=-HEAD \
+        --format=$'%(HEAD) %(color:yellow)%(refname:short) %(color:green)(%(committerdate:relative))\t%(color:blue)%(subject)%(color:reset)' \
+        --color="$(__fzf_git_color)" |
         column -ts$'\t'
 }
 export -f _fzf_git-list-branches

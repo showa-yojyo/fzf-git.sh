@@ -21,7 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-if [ -n "$_fzf_git_navigate_included" ]; then
+if [[ -n "$_fzf_git_navigate_included" ]]; then
     return;
 fi
 readonly _fzf_git_navigate_included=x
@@ -43,6 +43,8 @@ function navigate_github {
                 r="${OPTARG}"
                 break
                 ;;
+            *)
+                ;;
         esac
     done
     shift $((OPTIND-1))
@@ -51,31 +53,31 @@ function navigate_github {
         r=$(git config "branch.$(git branch --show-current).remote" || echo origin)
     fi
 
-    local -r remote_url=$(git remote get-url $r)
+    local -r remote_url=$(git remote get-url "$r")
 
     case "$remote_url" in
       git@*)
         # Remove "git@" and ".git"
-        local -r output=${remote_url:4:-4}
+        local -r output="${remote_url:4:-4}"
         # Remove the colon
-        echo https://${output/://}
+        echo "https://${output/://}"
       ;;
       https*)
-        echo ${remote_url%.git}
+        echo "${remote_url%.git}"
       ;;
     esac
 }
 
 # fzf-git.sh::branch|remote-branch
 function navigate_github_from_branch {
-    local -r branch=$(sed 's/^[* ]*//' <<< "$1" | cut -d' ' -f1)
-    local -r github_url=$(navigate_github -b $branch)
+    # For example, transform "* main" to "main".
+    local -r branch="$(cut -d' ' -f1 <<< "${1:2}")"
+    local -r github_url="$(navigate_github -b "$branch")"
     wslview "${github_url}/tree/${branch}"
 }
-
 # fzf-git.sh::commit
 function navigate_github_from_commit {
-    local -r sha=$(grep -o "[a-f0-9]\{7,\}" <<< "$1" | head -n 1)
+    local -r sha="$(grep -o "[a-f0-9]\{7,\}" <<< "$1" | head -n 1)"
     local -r github_url=$(navigate_github)
     wslview "${github_url}/commit/$sha"
 }
@@ -84,13 +86,13 @@ function navigate_github_from_commit {
 function navigate_github_each_ref {
     case "$1" in
       branch|remote-branch)
-        navigate_github_from_branch $2
+        navigate_github_from_branch "$2"
         ;;
       remote)
-        navigate_github_from_remote $2
+        navigate_github_from_remote "$2"
         ;;
       tag)
-        navigate_github_from_tag $2
+        navigate_github_from_tag "$2"
         ;;
       *)
         # exit 1
@@ -100,17 +102,16 @@ function navigate_github_each_ref {
 
 # fzf-git.sh::file
 function navigate_github_from_file {
-    local -r file=$1
+    local -r file="$1"
     local -r branch=$(git branch --show-current)
-    local -r github_url=$(navigate_github -b $branch)
+    local -r github_url=$(navigate_github -b "$branch")
     wslview "${github_url}/blob/${branch}/$(git rev-parse --show-prefix)${file}"
 }
 
 # fzf-git.sh::remote
 function navigate_github_from_remote {
-    local -r remote=$1
     local -r branch=$(git branch --show-current)
-    local -r github_url=$(navigate_github -b $branch)
+    local -r github_url=$(navigate_github -b "$branch")
     wslview "${github_url}/tree/${branch}"
 }
 

@@ -21,7 +21,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# shellcheck disable=SC2039
 [[ $0 == - ]] && return
 
 function _fzf_git_init {
