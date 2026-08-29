@@ -21,7 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-if [[ -n "$_fzf_git_each_ref_included" ]]; then
+if [[ -v _fzf_git_each_ref_included ]]; then
     return;
 fi
 readonly _fzf_git_each_ref_included=x

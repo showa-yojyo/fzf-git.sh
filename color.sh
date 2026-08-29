@@ -21,7 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-if [[ -n "$_fzf_git_color_included" ]]; then
+if [[ -v _fzf_git_color_included ]]; then
     return;
 fi
 readonly _fzf_git_color_included=x
